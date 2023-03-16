@@ -2,24 +2,27 @@
 #include <stdlib.h>
 #include "list_struct.h"
 
-UserListNode CreateUserList()
+UserListNode *CreateUserList(User user)
 {
     UserListNode *head = NULL;
     head = (UserListNode *)malloc(sizeof(UserListNode));
     if (head == NULL)
     {
-        UserListNode a = {{"asd", "asd", 23, "asd"}, NULL};
-        return a;
+        printf("ASD");
+        return NULL;
     }
 
-    return *head;
+    head->userData = user;
+    head->next = NULL;
+
+    return head;
 }
 
 void AddToUserList(UserListNode *head, User user)
 {
     UserListNode *current = head;
 
-    while (current != NULL)
+    while (current->next != NULL)
     {
         current = current->next;
     }
@@ -35,11 +38,13 @@ void PrintUserList(UserListNode *head)
 
     while (current != NULL)
     {
-        printf("{%s, %s, %lu, %s}",
-               current->userData.email,
-               current->userData.mothersName,
-               current->userData.phoneNumber,
-               current->userData.mothersName);
+        User u = current->userData;
+
+        printf("{%s, %s, %lu, %s}\n",
+               u.email,
+               u.mothersName,
+               u.phoneNumber,
+               u.mothersName);
 
         current = current->next;
     }

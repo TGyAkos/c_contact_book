@@ -3,13 +3,22 @@
 #include <string.h>
 #include "helper.h"
 #include "linked_list.h"
-#include "data_save.h"
+#include "data.h"
 #include "main.h"
 
 static UserListNode *userList;
 
 int main()
 {
+    char bs[100];
+    bs[0] = 'A';
+    bs[1] = ' ';
+    bs[2] = ' ';
+    bs[3] = 'A';
+    bs[4] = '\n';
+
+    printf("%s", bs);
+
     printf("Hello world\n");
     ChooseAction();
 
@@ -65,6 +74,7 @@ void DataInput()
         }
         else if (userInput == 2)
         {
+            PrintUserList(userList);
             DataSave(userList);
             break;
         }
@@ -109,5 +119,8 @@ void FillOutUserField(char *userField)
 
 void DataRead()
 {
-    // dont forget about this
+    userList = (UserListNode *)realloc(userList, sizeof(UserListNode));
+    userList = DataLoad();
+
+    PrintUserList(userList);
 }

@@ -41,8 +41,8 @@ void PrintUserList(UserListNode *head)
         User u = current->userData;
 
         printf("{%s, %s, %lu, %s}\n",
+               u.name,
                u.email,
-               u.mothersName,
                u.phoneNumber,
                u.mothersName);
 
